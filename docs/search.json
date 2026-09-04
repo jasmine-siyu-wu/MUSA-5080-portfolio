@@ -49,6 +49,76 @@
     "text": "Code\n\n\n\n\nData files for MUSA 5080\nDownload assignment data from Canvas and save it here. Do not rename the files! Have a nice day :)"
   },
   {
+    "objectID": "assignments/assignment2.html",
+    "href": "assignments/assignment2.html",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidycensus)"
+  },
+  {
+    "objectID": "assignments/assignment2.html#setup",
+    "href": "assignments/assignment2.html#setup",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidycensus)"
+  },
+  {
+    "objectID": "assignments/assignment2.html#the-question",
+    "href": "assignments/assignment2.html#the-question",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "The question",
+    "text": "The question\nEvery number the American Community Survey publishes is an estimate drawn from a sample, not a count. That means every number comes with a margin of error — a statement about how wrong it might be.\nMost people ignore it. In this assignment, you won’t.\nIn this analysis, I look at median gross rent across counties in California, and ask which communities we measure most and least reliably."
+  },
+  {
+    "objectID": "assignments/assignment2.html#choosing-what-to-measure",
+    "href": "assignments/assignment2.html#choosing-what-to-measure",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "Choosing what to measure",
+    "text": "Choosing what to measure\n\n# my_state &lt;- \"CA\"        # two-letter abbreviation, in quotes\nmy_state &lt;- params$state\nmy_variable &lt;- \"B25064_001\"     # the variable code, in quotes"
+  },
+  {
+    "objectID": "assignments/assignment2.html#pulling-the-data",
+    "href": "assignments/assignment2.html#pulling-the-data",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "Pulling the data",
+    "text": "Pulling the data\n\ncounty_data &lt;- get_acs(\n  geography = \"county\",\n  variables = my_variable,\n  state = my_state,\n  year = 2023,\n  survey = \"acs5\"\n)\n\nLet’s look at what came back.\n\ndim(county_data)\n\n[1] 58  5\n\nhead(county_data)\n\n# A tibble: 6 × 5\n  GEOID NAME                         variable   estimate   moe\n  &lt;chr&gt; &lt;chr&gt;                        &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 06001 Alameda County, California   B25064_001     2318    17\n2 06003 Alpine County, California    B25064_001       NA    NA\n3 06005 Amador County, California    B25064_001     1380   106\n4 06007 Butte County, California     B25064_001     1369    31\n5 06009 Calaveras County, California B25064_001     1615   142\n6 06011 Colusa County, California    B25064_001     1139    67\n\n\nCalifornia has 58 counties, which match the number of rows I got from ACS data."
+  },
+  {
+    "objectID": "assignments/assignment2.html#how-big-is-the-margin-of-error",
+    "href": "assignments/assignment2.html#how-big-is-the-margin-of-error",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "How big is the margin of error?",
+    "text": "How big is the margin of error?\nA margin of error of 3,000 means something very different for an estimate of 20,000 than for an estimate of 200,000. To compare across places, we need it as a percentage.\n\ncounty_data &lt;- county_data %&gt;%\n  mutate(moe_pct = moe / estimate * 100)\n\nNow sort to see which counties are measured least reliably.\n\ncounty_data %&gt;%\n  arrange(desc(moe_pct)) %&gt;%\n  select(NAME, estimate, moe, moe_pct) %&gt;%\n  head(10)\n\n# A tibble: 10 × 4\n   NAME                         estimate   moe moe_pct\n   &lt;chr&gt;                           &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n 1 Sierra County, California        1181   705   59.7 \n 2 Trinity County, California        922   220   23.9 \n 3 Plumas County, California        1034   148   14.3 \n 4 Mono County, California          1593   212   13.3 \n 5 Mariposa County, California      1268   165   13.0 \n 6 Calaveras County, California     1615   142    8.79\n 7 Modoc County, California          818    71    8.68\n 8 Lake County, California          1292   110    8.51\n 9 Tuolumne County, California      1247   103    8.26\n10 Inyo County, California          1140    88    7.72\n\n\nSierra County has the largest margin of error relative to its estimate, with a percentage of 59.7%."
+  },
+  {
+    "objectID": "assignments/assignment2.html#sorting-counties-into-reliability-categories",
+    "href": "assignments/assignment2.html#sorting-counties-into-reliability-categories",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "Sorting counties into reliability categories",
+    "text": "Sorting counties into reliability categories\n\ncounty_data &lt;- county_data %&gt;%\n  mutate(reliability = case_when(\n    moe_pct &lt; 5  ~ \"High confidence\",\n    moe_pct &lt; 10 ~ \"Moderate\",\n    TRUE         ~ \"Low confidence\"\n  ))\n\ncount(county_data, reliability)\n\n# A tibble: 3 × 2\n  reliability         n\n  &lt;chr&gt;           &lt;int&gt;\n1 High confidence    39\n2 Low confidence      6\n3 Moderate           13\n\n\nThere are 39 counties fall into the high-confidence category, 13 in the moderate confidence category, and 6 in the low confidence category."
+  },
+  {
+    "objectID": "assignments/assignment2.html#is-the-margin-of-error-bigger-in-small-places",
+    "href": "assignments/assignment2.html#is-the-margin-of-error-bigger-in-small-places",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "Is the margin of error bigger in small places?",
+    "text": "Is the margin of error bigger in small places?\nTo answer this we need population and our variable side by side, in the same row. That means a wide pull.\n\ncounty_wide &lt;- get_acs(\n  geography = \"county\",\n  variables = c(myvar = my_variable,\n                pop = \"B01003_001\"),\n  state = my_state,\n  year = 2023,\n  survey = \"acs5\",\n  output = \"wide\"\n)\n\nhead(county_wide)\n\n# A tibble: 6 × 6\n  GEOID NAME                         myvarE myvarM    popE  popM\n  &lt;chr&gt; &lt;chr&gt;                         &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1 06001 Alameda County, California     2318     17 1651949    NA\n2 06003 Alpine County, California        NA     NA    1695   234\n3 06005 Amador County, California      1380    106   41029    NA\n4 06007 Butte County, California       1369     31  209470    NA\n5 06009 Calaveras County, California   1615    142   45995    NA\n6 06011 Colusa County, California      1139     67   21895    NA\n\n\n\ncounty_wide &lt;- county_wide %&gt;%\n  mutate(moe_pct = myvarM / myvarE * 100) %&gt;%\n  mutate(reliability = case_when(\n    moe_pct &lt; 5  ~ \"High confidence\",\n    moe_pct &lt; 15 ~ \"Moderate\",\n    TRUE         ~ \"Low confidence\"\n  ))%&gt;%\n  mutate(reliability = factor(reliability, levels = c(\"Low confidence\", \"Moderate\", \"High confidence\")))\n\nNow compare the average population of counties in each reliability category.\n\ncounty_wide %&gt;%\n  group_by(reliability) %&gt;%\n  summarize(\n    n_counties = n(),\n    avg_population = mean(popE)\n  )\n\n# A tibble: 3 × 3\n  reliability     n_counties avg_population\n  &lt;fct&gt;                &lt;int&gt;          &lt;dbl&gt;\n1 Low confidence           3          6771.\n2 Moderate                16         40430.\n3 High confidence         39        989118.\n\n\nThe average population of high-confidence counties is near 1 million, while the low-confidence counties have an average population of under 7k. With the moderate-confidence counties having an average population of 40k, the data shows that the higher confidence the estimates are, the more population a county has."
+  },
+  {
+    "objectID": "assignments/assignment2.html#what-this-means-for-policy",
+    "href": "assignments/assignment2.html#what-this-means-for-policy",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "What this means for policy",
+    "text": "What this means for policy\nAcross California, we know the least about gross rent in Sierra and Trinity Counties, where the margins of error (MOEs) are as large as 60% of the gross rent estimates. Plumas, Mono, and Mariposa Counties also have MOEs greater than 15% of their estimates. These counties are among the least populous in the state, with an average population of only 6,771, in contrast to California’s largest counties, whose populations approach or exceed one million. This geographic inequality in statistical uncertainty is partly a consequence of the ACS data collection process. Smaller counties generally have smaller samples, resulting in greater uncertainty when sample estimates are used to characterize the county population. In contrast, more populous counties tend to have larger samples and therefore more precise estimates. This unequal certainty also has potential policy implications. Smaller, often more rural counties may have less reliable information available for planning and resource allocation precisely because fewer people live there. If funding formulas or program decisions rely on estimated housing costs, uncertainty in gross rent estimates could affect how local needs are assessed. An underestimated gross rent could understate housing costs and potentially lead to insufficient resources, while an overestimate could overstate local needs. In this sense, statistical uncertainty is not distributed evenly across places, and that unevenness can itself create an equity concern for evidence-based policymaking."
+  },
+  {
+    "objectID": "assignments/assignment2.html#write-a-function-and-iterate",
+    "href": "assignments/assignment2.html#write-a-function-and-iterate",
+    "title": "Assignment 2: Who Do We Know the Least About?",
+    "section": "Write A Function and Iterate",
+    "text": "Write A Function and Iterate\n\npull_state_data &lt;- function(state_abbr) {\n  get_acs(\n  geography = \"county\",\n  variables = c(myvar = my_variable,\n                pop = \"B01003_001\"),\n  state = state_abbr,\n  year = 2023,\n  survey = \"acs5\",\n  output = \"wide\"\n  ) %&gt;%\n  mutate(moe_pct = myvarM / myvarE * 100) %&gt;%\n  mutate(reliability = case_when(\n    moe_pct &lt; 5  ~ \"High confidence\",\n    moe_pct &lt; 10 ~ \"Moderate\",\n    TRUE         ~ \"Low confidence\"\n  )) %&gt;%\n  mutate(reliability = factor(reliability, levels = c(\"Low confidence\", \"Moderate\", \"High confidence\"))) %&gt;%\n  mutate(state = state_abbr) %&gt;%\n  group_by(state, reliability) %&gt;%\n  summarize(\n    n_counties = n(),\n    avg_population = mean(popE)\n  )\n}\n\nstates &lt;- c(\"PA\", \"NY\", \"NJ\", \"OH\")\n\nall_states &lt;- purrr::map_dfr(states, pull_state_data)\nall_states\n\n# A tibble: 11 × 4\n# Groups:   state [4]\n   state reliability     n_counties avg_population\n   &lt;chr&gt; &lt;fct&gt;                &lt;int&gt;          &lt;dbl&gt;\n 1 PA    Low confidence           4         15010.\n 2 PA    Moderate                 9         45290.\n 3 PA    High confidence         54        231831.\n 4 NY    Low confidence           1          5102 \n 5 NY    Moderate                10         41178.\n 6 NY    High confidence         51        381479.\n 7 NJ    Moderate                 1         95236 \n 8 NJ    High confidence         20        458589.\n 9 OH    Low confidence           3         13989.\n10 OH    Moderate                28         39695.\n11 OH    High confidence         57        186432"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About Me",
@@ -81,7 +151,7 @@
     "href": "assignments/index.html",
     "title": "Assignments",
     "section": "",
-    "text": "Completed assignments for MUSA 5080. New assignments appear here automatically once you add the .qmd file to this folder and render.\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Completed assignments for MUSA 5080. New assignments appear here automatically once you add the .qmd file to this folder and render.\n\n\n\n\n\n\n\n\n\n\n\nAssignment 2: Who Do We Know the Least About?\n\n\n\n\n\n\n\n\nSep 4, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
