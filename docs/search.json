@@ -53,28 +53,28 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the University of Pennsylvania."
+    "text": "I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the University of Pennsylvania. My research develops computational, spatial, and visual analytic approaches to support planners in optimizing complex urban systems when goals conflict and uncertainty is unavoidable. Situated at the intersection of planning, transportation, and public health, I develop analytical frameworks that integrate large-scale administrative and operational data, high-resolution spatial modeling, and visualization for communication to support more transparent and interpretable planning decisions."
   },
   {
     "objectID": "about.html#background",
     "href": "about.html#background",
     "title": "About Me",
     "section": "",
-    "text": "I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the University of Pennsylvania."
+    "text": "I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the University of Pennsylvania. My research develops computational, spatial, and visual analytic approaches to support planners in optimizing complex urban systems when goals conflict and uncertainty is unavoidable. Situated at the intersection of planning, transportation, and public health, I develop analytical frameworks that integrate large-scale administrative and operational data, high-resolution spatial modeling, and visualization for communication to support more transparent and interpretable planning decisions."
   },
   {
     "objectID": "about.html#skills",
     "href": "about.html#skills",
     "title": "About Me",
     "section": "Skills",
-    "text": "Skills\n\n\nLanguages & Tools: R, Quarto, Git\nSpatial: (add as you learn)\nData: US Census / ACS via tidycensus"
+    "text": "Skills\n\nLanguages & Tools: R, Quarto, Git\nSpatial: (add as you learn)\nData: US Census / ACS via tidycensus"
   },
   {
     "objectID": "about.html#contact",
     "href": "about.html#contact",
     "title": "About Me",
     "section": "Contact",
-    "text": "Contact\n\n\nEmail: jsiyuwu@upenn.edu"
+    "text": "Contact\n\nEmail: jsiyuwu@upenn.edu\nGitHub: @jasmine-siyu-wu"
   },
   {
     "objectID": "assignments/index.html",
@@ -88,14 +88,14 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Welcome to my portfolio for MUSA 5080: Public Policy Analytics at the University of Pennsylvania.\nThis site documents my work in the Master of Urban Spatial Analytics program — weekly notes, course assignments, and a final project applying data analysis to urban policy questions.\n\n\n\nI’m a PhD candidate of City and Regional Planning at the University of Pennsylvania.\n\n\n\n\nWeekly Notes — what I’m learning each week\nAssignments — analyses completed for the course\nAbout — more background and how to reach me\n\n\n\n\n\n\nEmail: your-email@upenn.edu\nGitHub: @your-username"
+    "text": "Welcome to my portfolio for MUSA 5080: Public Policy Analytics at the University of Pennsylvania.\nThis site documents my work in the Master of Urban Spatial Analytics program — weekly notes, course assignments, and a final project applying data analysis to urban policy questions.\n\n\nI’m a PhD candidate of City and Regional Planning at the University of Pennsylvania. My research develops computational, spatial, and visual analytic approaches to support planners in optimizing complex urban systems when goals conflict and uncertainty is unavoidable. Situated at the intersection of planning, transportation, and public health, I develop analytical frameworks that integrate large-scale administrative and operational data, high-resolution spatial modeling, and visualization for communication to support more transparent and interpretable planning decisions.\n\n\n\n\nWeekly Notes — what I’m learning each week\nAssignments — analyses completed for the course\nAbout — more background and how to reach me\n\n\n\n\n\nEmail: your-email@upenn.edu\nGitHub: @jasmine-siyu-wu"
   },
   {
     "objectID": "index.html#about-me",
     "href": "index.html#about-me",
     "title": "Home",
     "section": "",
-    "text": "I’m a PhD candidate of City and Regional Planning at the University of Pennsylvania."
+    "text": "I’m a PhD candidate of City and Regional Planning at the University of Pennsylvania. My research develops computational, spatial, and visual analytic approaches to support planners in optimizing complex urban systems when goals conflict and uncertainty is unavoidable. Situated at the intersection of planning, transportation, and public health, I develop analytical frameworks that integrate large-scale administrative and operational data, high-resolution spatial modeling, and visualization for communication to support more transparent and interpretable planning decisions."
   },
   {
     "objectID": "index.html#what-youll-find-here",
@@ -109,7 +109,7 @@
     "href": "index.html#get-in-touch",
     "title": "Home",
     "section": "",
-    "text": "Email: your-email@upenn.edu\nGitHub: @your-username"
+    "text": "Email: your-email@upenn.edu\nGitHub: @jasmine-siyu-wu"
   },
   {
     "objectID": "weekly-notes/week-01.html",

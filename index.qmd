@@ -2,7 +2,7 @@
 title: "Home"
 ---
 
-# YOUR NAME HERE {#welcome}
+# Jasmine Siyu Wu
 
 <!-- CHANGE THIS: replace with your own name above -->
 
@@ -15,9 +15,7 @@ urban policy questions.
 
 ## About Me
 
-<!-- CHANGE THIS: two or three sentences about yourself -->
-
-I'm a PhD candidate of City and Regional Planning at the University of Pennsylvania.
+I'm a PhD candidate of City and Regional Planning at the University of Pennsylvania. My research develops computational, spatial, and visual analytic approaches to support planners in optimizing complex urban systems when goals conflict and uncertainty is unavoidable. Situated at the intersection of planning, transportation, and public health, I develop analytical frameworks that integrate large-scale administrative and operational data, high-resolution spatial modeling, and visualization for communication to support more transparent and interpretable planning decisions.
 
 ## What You'll Find Here
 
@@ -27,7 +25,5 @@ I'm a PhD candidate of City and Regional Planning at the University of Pennsylva
 
 ## Get in Touch
 
-<!-- CHANGE THIS -->
-
 - Email: your-email@upenn.edu
-- GitHub: [@your-username](https://github.com/your-username)
+- GitHub: [@jasmine-siyu-wu](https://github.com/jasmine-siyu-wu)

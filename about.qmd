@@ -4,13 +4,9 @@ title: "About Me"
 
 ## Background
 
-<!-- CHANGE THIS -->
-
-I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the University of Pennsylvania.
+I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the University of Pennsylvania. My research develops computational, spatial, and visual analytic approaches to support planners in optimizing complex urban systems when goals conflict and uncertainty is unavoidable. Situated at the intersection of planning, transportation, and public health, I develop analytical frameworks that integrate large-scale administrative and operational data, high-resolution spatial modeling, and visualization for communication to support more transparent and interpretable planning decisions.
 
 ## Skills
-
-<!-- CHANGE THIS: update this through the semester as it becomes true -->
 
 - **Languages & Tools:** R, Quarto, Git
 - **Spatial:** (add as you learn)
@@ -18,7 +14,5 @@ I am Jasmine Siyu Wu, a PhD candidate of City and Regional Planning at the Unive
 
 ## Contact
 
-<!-- CHANGE THIS -->
-
 - Email: jsiyuwu@upenn.edu
-<!-- - GitHub: [@your-username](https://github.com/your-username) -->
+- GitHub: [@jasmine-siyu-wu](https://github.com/jasmine-siyu-wu)
